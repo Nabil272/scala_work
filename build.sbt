@@ -5,6 +5,7 @@ ThisBuild / scalaVersion := "2.12.18"
 
 val flinkVersion = "1.17.1"
 val kafkaVersion = "3.2.0"
+val sparkVersion = "3.4.1"
 
 lazy val flinkDependencies: Seq[sbt.librarymanagement.ModuleID] = {
   def flinkModule(name: String) = "org.apache.flink" % s"flink-$name" % flinkVersion
@@ -58,9 +59,6 @@ libraryDependencies ++= Seq(
   "org.apache.flink" %% "flink-streaming-scala" % flinkVersion % "provided",
   //"org.apache.hadoop" % "hadoop-common" % "3.3.4",
   //"org.apache.hadoop" % "hadoop-mapreduce-client-core" % "3.3.4",
-
-
-
   //"com.github.mjakubowski84" %% "parquet4s-core" % "1.0.0",
   //"org.apache.hadoop" % "hadoop-client" % "2.4.0",
   //"org.apache.flink" %% "flink-hadoop-compatibility" % flinkVersion % "provided",
@@ -68,6 +66,18 @@ libraryDependencies ++= Seq(
   "org.apache.flink" % "flink-table-common" % flinkVersion
 
 )
+
+libraryDependencies += "org.apache.spark" %% "spark-sql" % sparkVersion
+libraryDependencies += "org.apache.parquet" % "parquet-hadoop" % "1.11.1"
+libraryDependencies += "org.apache.parquet" % "parquet-column" % "1.11.1"
+
+
+libraryDependencies ++= Seq(
+  "com.fasterxml.jackson.core" % "jackson-core" % "2.11.0",
+  "com.fasterxml.jackson.core" % "jackson-databind" % "2.11.0",
+  "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.11.0"
+)
+
 
 
 

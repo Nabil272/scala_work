@@ -18,7 +18,7 @@ object flinkExample1 {
     // kafka server
     val kafkaSource = KafkaSource.builder()
       .setBootstrapServers("localhost:29092")
-      .setTopics("flink-example")
+      .setTopics("bor_prices_topic")
       .setGroupId("flink-consumer-group")
       .setStartingOffsets(OffsetsInitializer.latest())
       .setValueOnlyDeserializer(new SimpleStringSchema())
@@ -38,9 +38,11 @@ object flinkExample1 {
       .build()
 
 
-    val lines = env.fromSource(kafkaSource, WatermarkStrategy.noWatermarks(), "Kafka Source")
+    val lines : DataStream[String] = env.fromSource(kafkaSource, WatermarkStrategy.noWatermarks(), "Kafka Source")
+
     // faire un map sur le message en rajoutant un string
     val transformed = lines.map(line => "Transformed: " + line)
+
 
     transformed.sinkTo(kafkaSink)
 

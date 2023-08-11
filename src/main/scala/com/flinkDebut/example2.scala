@@ -29,8 +29,6 @@ import org.apache.flink.api.common.typeinfo.BasicTypeInfo
 import org.apache.flink.api.java.typeutils.RowTypeInfo
 
 
-
-
 object flinkExample2{
 
   def main(args: Array[String]): Unit = {
@@ -60,7 +58,7 @@ object flinkExample2{
       messageTypeBuilder.required(PrimitiveTypeName.INT32).named(field)
     }
 
-    val filePath = "/Users/nabilito/scala_work/data/flow_1346.parquet"
+    val filePath = "/Users/nabilito/scala_work/data/flow_1346.parquet.parquet"
 
 
     val tableEnv = StreamTableEnvironment.create(env)
